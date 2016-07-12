@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - linuxhq3.epel
+  - linuxhq.epel
   - tkimball83.tkimball83
 galaxy_info:
   author: tkimball83
