@@ -1,0 +1,6 @@
+---
+osticket_httpd_customlog: osticket-access_log
+osticket_httpd_documentroot: /usr/share/osTicket/htdocs/
+osticket_httpd_errorlog: osticket-error_log
+osticket_httpd_servername: osticket
+osticket_pipe: helpdesk

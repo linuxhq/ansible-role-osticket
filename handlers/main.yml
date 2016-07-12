@@ -1,0 +1,4 @@
+---
+- name: newaliases
+  tags: osticket
+  command: newaliases

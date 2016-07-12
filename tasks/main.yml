@@ -1,0 +1,24 @@
+---
+- name: Install osTicket package
+  tags: osticket
+  yum: name=osTicket
+       enablerepo=epel,tkimball83-{{ tkimball83_pkg }}
+       state=present
+       update_cache=yes
+  register: osticket_yum
+
+- block:
+    - name: Add incoming email alias
+      lineinfile: dest=/etc/aliases
+                  line="{{ osticket_pipe }}:\t\t|/usr/share/osTicket/htdocs/api/pipe.php"
+                  state=present
+      notify: newaliases
+      when: osticket_pipe is defined
+    - name: Configure osTicket.conf
+      template: src=osTicket.conf.j2
+                dest=/etc/httpd/conf.d/osTicket.conf
+                owner=root
+                group=root
+                mode=0644
+  tags: osticket
+  when: osticket_yum|success
