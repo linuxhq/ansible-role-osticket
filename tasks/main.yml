@@ -2,7 +2,7 @@
 - name: Install osTicket package
   tags: osticket
   yum: name=osTicket
-       enablerepo=epel,tkimball83-{{ tkimball83_pkg }}
+       enablerepo=epel,linuxhq-{{ linuxhq_pkg }}
        state=present
        update_cache=yes
   register: osticket_yum

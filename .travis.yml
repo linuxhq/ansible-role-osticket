@@ -7,7 +7,7 @@ install:
   - ansible --version
   - printf '[defaults]\nroles_path=../' > ansible.cfg
   - ansible-galaxy install linuxhq.epel
-  - ansible-galaxy install tkimball83.tkimball83
+  - ansible-galaxy install linuxhq.linuxhq
 script:
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 notifications:
