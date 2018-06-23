@@ -30,7 +30,7 @@ Available variables are listed below, along with default values:
     - hosts: servers
       roles:
         - role: linuxhq.osticket
-          osticket_httpd_serveralias:
+          osticket_serveralias:
             - helpdesk.linuxhq.org
 
 ## License
