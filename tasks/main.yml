@@ -1,24 +1,31 @@
 ---
-- name: Install osTicket package
+- name: Ensure that the osticket package is installed
   tags: osticket
-  yum: name=osTicket
-       enablerepo=epel,linuxhq-{{ linuxhq_pkg }}
-       state=present
-       update_cache=yes
+  become: true
+  yum:
+    enablerepo: "linuxhq-{{ linuxhq_pkg }}"
+    name: osticket
+    state: present
   register: osticket_yum
 
-- block:
-    - name: Add incoming email alias
-      lineinfile: dest=/etc/aliases
-                  line="{{ osticket_pipe }}:\t\t|/usr/share/osTicket/htdocs/api/pipe.php"
-                  state=present
-      notify: newaliases
-      when: osticket_pipe is defined
-    - name: Configure osTicket.conf
-      template: src=osTicket.conf.j2
-                dest=/etc/httpd/conf.d/osTicket.conf
-                owner=root
-                group=root
-                mode=0644
+- name: Attempting to overlay incoming email alias
   tags: osticket
-  when: osticket_yum|success
+  become: true
+  lineinfile:
+    dest: /etc/aliases
+    line: "{{ osticket_pipe }}:\t\t|{{ osticket_documentroot }}/api/pipe.php"
+    state: present
+  notify: newaliases
+  when: osticket_yum is success
+
+- name: Attempting to overlay osticket configurations
+  tags: osticket
+  become: true
+  template:
+    src: osticket.conf.j2
+    dest: /etc/httpd/conf.d/osticket.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: osticket_yum is success
+...

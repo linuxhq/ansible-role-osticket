@@ -1,4 +1,7 @@
 ---
 - name: newaliases
   tags: osticket
-  command: newaliases
+  become: true
+  command: |
+    newaliases
+...

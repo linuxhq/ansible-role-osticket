@@ -1,19 +1,15 @@
 ---
 dependencies:
-  - linuxhq.epel
   - linuxhq.linuxhq
 galaxy_info:
   author: tkimball83
   description: RHEL/CentOS - Support Ticket System
-  license: BSD
-  min_ansible_version: 2.0
+  license: GPLv3
+  min_ansible_version: 2.5
   platforms:
     - name: EL
-      versions: 
-        - 6
+      versions:
         - 7
   galaxy_tags:
     - osticket
-    - support
-    - system
-    - ticketing
+...
