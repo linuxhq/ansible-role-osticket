@@ -2,6 +2,7 @@
 dependencies:
   - linuxhq.linuxhq
 galaxy_info:
+  role_name: osticket
   author: tkimball83
   description: RHEL/CentOS - Support Ticket System
   license: GPLv3
